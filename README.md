@@ -1,6 +1,8 @@
 # scylla-spring-cassandra
 Simple example on how to override spring-data-cassandra transitional dependencies to Scylla ones.
 
+**Requires:** Gradle 7x (we used 7.3)
+
 **NOTES:** Ensure the same JAR release is set as listed on the respective `spring-data-cassandra` you use.
 
 Useful commands:
