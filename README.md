@@ -1,0 +1,1 @@
+# scylla-spring-cassandra
