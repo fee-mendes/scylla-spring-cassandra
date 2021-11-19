@@ -1,0 +1,37 @@
+plugins {
+  id 'com.github.johnrengelman.shadow' version '7.1.0'
+  id 'java'
+}
+
+repositories { 
+    mavenCentral() 
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    implementation {
+        exclude group: 'com.datastax.oss', module: 'java-driver-core'
+        exclude group: 'com.datastax.oss', module: 'java-driver-query-builder'
+    }
+}
+
+dependencies {
+    implementation "joda-time:joda-time:2.2"
+    implementation 'org.springframework.data:spring-data-cassandra:3.3.0'
+    implementation 'com.scylladb:java-driver-core:4.11.1.0'
+    implementation 'com.scylladb:java-driver-query-builder:4.11.1.0'
+    testImplementation "junit:junit:4.12"
+}
+
+task getDeps(type: Copy) {
+  from sourceSets.main.runtimeClasspath
+  into 'runtime/'
+}
+
+shadowJar {
+  manifest {
+   attributes 'Main-Class': "scylla.Scylla"
+  }
+}
